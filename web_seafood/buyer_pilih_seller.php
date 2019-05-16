@@ -16,9 +16,7 @@
 
         include("db_conn.php");
 
-
-
-if(isset($_POST["add_to_cart"]))
+        if(isset($_POST["menu_seller"]))
     {
         if(isset($_SESSION["shopping_cart"]))
         {
@@ -50,22 +48,6 @@ if(isset($_POST["add_to_cart"]))
             $_SESSION["shopping_cart"][0] = $item_array;
         }
     }
-
-if(isset($_GET["action"]))
-{
-	if($_GET["action"] == "delete")
-	{
-		foreach($_SESSION["shopping_cart"] as $keys => $values)
-		{
-			if($values["id_item"] == $_GET["id"])
-			{
-				unset($_SESSION["shopping_cart"][$keys]);
-				echo '<script>alert("Item Removed")</script>';
-				echo '<script>window.location="buyer_shop.php"</script>';
-			}
-		}
-	}
-}
     ?>
 
     <!-- Header -->
@@ -111,10 +93,10 @@ if(isset($_GET["action"]))
             <div class="col-4"></div>
         </div>
     </div>
-
+    		
     <?php
         $id = $_SESSION['id'];
-        $sqlShowAll = "SELECT * FROM item_lists ";
+        $sqlShowAll = "SELECT * FROM members ";
         $listItem = $conn->query($sqlShowAll);
     ?>
 
@@ -123,8 +105,10 @@ if(isset($_GET["action"]))
         
         <!-- List Item -->
         <div class="row">
-        <?php
-				$query = "SELECT * FROM item_lists ORDER BY id_item ASC";
+
+           
+            <?php
+				$query = "SELECT * FROM members WHERE ROLE_MEMBER = 'seller'";
 				$result = mysqli_query($conn, $query);
 				if(mysqli_num_rows($result) > 0)
 				{
@@ -132,21 +116,18 @@ if(isset($_GET["action"]))
 					{
 				?>
                         <div class="col-md-4">
-                            <form method="post" action="buyer_shop.php?action=add&id=<?php echo $row["id_item"]; ?>">
+                            <form method="post" action="buyer_shop.php ?>">
                                 <div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
-                                    <img src="img/<?php echo $row["gambar_item"]; ?>" class="img-responsive" /><br />
+                                    <img src="images/<?php echo $row["image"]; ?>" class="img-responsive" /><br />
 
-                                    <h4 class="text-info"><?php echo $row["nama_item"]; ?></h4>
+                                    <h4 class="text-info"><?php echo $row["nama_member"]; ?></h4>
 
-                                    <h4 class="text-danger"><?php echo $row["harga_item"]; ?> K</h4>
+                                    <h4 class="text-danger"><?php echo $row["alamat_member"]; ?> K</h4>
 
-                                    <input type="text" name="jumlah" value="1" class="form-control" />
+                                   
+                                   
 
-                                    <input type="hidden" name="hidden_name" value="<?php echo $row["nama_item"]; ?>" />
-
-                                    <input type="hidden" name="hidden_price" value="<?php echo $row["harga_item"]; ?>" />
-
-                                    <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
+                                    <input type="submit" name="menu_seller" style="margin-top:5px;" class="btn btn-success" value="Pilih Menu" />
 
                                 </div>
                             </form>
@@ -155,57 +136,11 @@ if(isset($_GET["action"]))
 					}
 				}
 			?>
-           <div class="table-responsive">
-				<table class="table table-bordered">
-					<tr>
-						<th width="40%">Item Name</th>
-						<th width="10%">Quantity</th>
-						<th width="20%">Price</th>
-						<th width="15%">Total</th>
-						<th width="5%">Action</th>
-					</tr>
-					<?php
-					if(!empty($_SESSION["shopping_cart"]))
-					{
-						$total = 0;
-						foreach($_SESSION["shopping_cart"] as $keys => $values)
-						{
-					?>
-					<tr>
-						<td><?php echo $values["nama_item"]; ?></td>
-						<td><?php echo $values["jumlah"]; ?></td>
-						<td>$ <?php echo $values["harga_item"]; ?></td>
-						<td>$ <?php echo number_format($values["jumlah"] * $values["harga_item"], 2);?></td>
-						<td><a href="buyer_shop.php?action=delete&id=<?php echo $values["id_item"]; ?>"><span class="text-danger">Remove</span></a></td>
-					</tr>
-					<?php
-							$total = $total + ($values["jumlah"] * $values["harga_item"]);
-						}
-					?>
-					<tr>
-						<td colspan="3" align="right">Total</td>
-						<td align="right">$ <?php echo number_format($total, 2); ?></td>
-						<td></td>
-					</tr>
-					<?php
-					}
-					?>
-						
-				</table>
-			</div>
+            
+            
         </div>
         
-        <!-- Button Show Form -->
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-2 mb-3">
-                <button class="btn btn-success w-100" onclick="showform('crtfrm')">Pesan</button>
-            </div>
-            <div class="col-2">
-                <button class="btn btn-primary w-100" onclick="showform('edtfrm')">Batal</button>
-            </div>
-            <div class="col-4"></div>
-        </div>
+       
 
         <!-- Form Create -->
         <div class="row">
