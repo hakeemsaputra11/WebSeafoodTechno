@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +60,7 @@
             <div class="col-4"></div>
         </div>
     </div>
-
+    		
     <?php
         $id = $_SESSION['id'];
         $sqlShowAll = "SELECT * FROM item_lists WHERE id_member = '$id'";
