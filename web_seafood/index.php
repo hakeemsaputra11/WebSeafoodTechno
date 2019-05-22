@@ -8,35 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
-
-    <?php
-
-        session_start();
-
-        $visLogin = "";
-        $visLogout = "";
-        $visMember = "";
-
-        if(isset($_SESSION['role'])){
-            $visLogin = "style = display:none"; 
-            $visLogout = "style = display:block";
-            
-            if($_SESSION['role'] == "admin"){
-
-                $visMember = "style = display:block";
-            }
-            else{
-                $visMember = "style = display:none";
-            }
-        }
-        else{
-            $visLogin = "style = display:block";
-            $visLogout = "style = display:none";
-            $visMember = "style = display:none";
-        }
-
-    ?>
+<body style="background-image:url('icon/wpp2.png')">
 
     <!-- Header -->
     <div class="container-fluid">
@@ -58,7 +30,7 @@
                 </a>
             </div>
             <div class="col-1 pt-3 pr-3 pb-1 pl-3">
-                <a href="">
+                <a href="menu_index.php">
                     <img class="w-100 vis" src="icon/menu.png" alt="icon menu" id="img2" 
                     onmouseover="visible(2)" onmouseout="invisible(2)">
                     <h6 class="text-center text-white" id="txt2" style="display:none">Menu</h6>
@@ -81,16 +53,6 @@
             <div class="col-4"></div>
         </div>
     </div>
-
-    <a href="member.php" <?php echo $visMember; ?>>
-        Member
-    </a>
-    <a href="loginRegister.php" <?php echo $visLogin; ?>>
-        Login
-    </a>
-    <a href="logout.php" <?php echo $visLogout; ?>>
-        Logout
-    </a>
 
     <!-- Footer -->
     <div class="container-fluid" style="background-color:#3498db;color:white">

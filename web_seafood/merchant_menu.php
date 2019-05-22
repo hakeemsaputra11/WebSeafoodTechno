@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +43,7 @@
                 </a>
             </div>
             <div class="col-1 pt-3 pr-3 pb-1 pl-3">
-                <a href=".php" >
+                <a href="merchant_transactions.php" >
                     <img class="w-100 vis" src="icon/transaction.png" alt="icon member" id="img3"
                     onmouseover="visible(3)" onmouseout="invisible(3)">
                     <h6 class="text-center text-white" id="txt3" style="display:none">Transaction</h6>
@@ -60,12 +59,14 @@
             <div class="col-4"></div>
         </div>
     </div>
-    		
+
     <?php
         $id = $_SESSION['id'];
         $sqlShowAll = "SELECT * FROM item_lists WHERE id_member = '$id'";
         $listItem = $conn->query($sqlShowAll);
     ?>
+
+    <div class="pt-3 pb-3" style="background-image:url('icon/wpp22.jpg');background-size:100%">
 
     <!-- ISI -->
     <div class="container-fluid">
@@ -73,7 +74,7 @@
         <!-- List Item -->
         <div class="row">
             <div class="col-2"></div>
-            <div class="col-8 text-center text-white font-italic mt-3 p-3 mb-3"
+            <div class="col-8 text-center text-white font-italic p-3 mb-3"
             style="background-color:rgb(0,0,0,0.8);border-radius:20px">
                 <h2>Item List</h2>
                 <br>
@@ -120,7 +121,7 @@
         <!-- Button Show Form -->
         <div class="row">
             <div class="col-4"></div>
-            <div class="col-2 mb-3">
+            <div class="col-2">
                 <button class="btn btn-success w-100" onclick="showform('crtfrm')">Create Item</button>
             </div>
             <div class="col-2">
@@ -132,7 +133,7 @@
         <!-- Form Create -->
         <div class="row">
             <div class="col-4"></div>
-            <div id="crtfrm" class="col-4 text-center font-italic text-white p-3 mb-3"
+            <div id="crtfrm" class="col-4 text-center font-italic text-white p-3 mt-3"
             style="background-color:rgb(0,0,0,0.8);border-radius:20px;display:none">
                 <h2>Create Item</h2>
                 <br>
@@ -169,7 +170,7 @@
         <!-- Form Edit -->
         <div class="row">
             <div class="col-4"></div>
-            <div id="edtfrm" class="col-4 text-center font-italic text-white p-3 mb-3"
+            <div id="edtfrm" class="col-4 text-center font-italic text-white p-3 mt-3"
             style="background-color:rgb(0,0,0,0.8);border-radius:20px;display:none">
                 <h2>Edit Item</h2>
                 <br>
@@ -206,6 +207,7 @@
             </div>
             <div class="col-4"></div>
         </div>
+    </div>
     </div>
 
     <!-- Footer -->

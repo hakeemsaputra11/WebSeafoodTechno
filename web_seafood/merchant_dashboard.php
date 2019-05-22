@@ -41,7 +41,7 @@
                 </a>
             </div>
             <div class="col-1 pt-3 pr-3 pb-1 pl-3">
-                <a href=".php" >
+                <a href="merchant_transactions.php" >
                     <img class="w-100 vis" src="icon/transaction.png" alt="icon member" id="img3"
                     onmouseover="visible(3)" onmouseout="invisible(3)">
                     <h6 class="text-center text-white" id="txt3" style="display:none">Transaction</h6>
@@ -58,12 +58,15 @@
         </div>
     </div>
 
+    <div class="pt-3 pb-3" style="background-image:url('icon/wpp22.jpg');background-size:100%">
+
     <!-- ISI -->
     <div class="container-fluid">
         <!-- Welcoming Member -->
         <div class="row">
             <div class="col-4"></div>
-            <div class="col-4 text-center font-italic mt-3 mb-3">
+            <div class="col-4 text-white text-center font-italic mb-3 p-1" 
+            style="background-color:rgb(0,0,0,0.8);border-radius:20px">
                 <h1>Welcome, <?php echo $_SESSION['nama'] ?></h1>
             </div>
             <div class="col-4"></div>
@@ -71,7 +74,7 @@
         <!-- Member Profile -->
         <div class="row">
             <div class="col-4"></div>
-            <div class="col-4 text-center font-italic mb-3 text-white p-3" 
+            <div class="col-4 text-center font-italic text-white p-3" 
             style="background-color:rgb(0,0,0,0.8);border-radius:20px">
                 <h2>Profile</h2>
                 <br>
@@ -93,7 +96,7 @@
         <!-- Edit Profile Form -->
         <div class="row">
             <div class="col-4"></div>
-            <div id="form" class="col-4 text-center font-italic text-white p-3 mb-3"
+            <div id="form" class="col-4 text-center font-italic text-white p-3"
             style="background-color:rgb(0,0,0,0.8);border-radius:20px;display:none">
                 <h2>Edit Profile</h2>
                 <br>
@@ -129,6 +132,7 @@
             </div>
             <div class="col-4"></div>
         </div>
+    </div>
     </div>
 
     <!-- Footer -->

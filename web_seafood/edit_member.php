@@ -8,6 +8,7 @@
     $nama = $_POST["nama"];
     $notlp = $_POST["notlp"];
     $alamat = $_POST["alamat"];
+    $role = $_SESSION["role"];
     $usr = $_POST["username"];
     $pass = md5($_POST["password"]);
 
@@ -21,7 +22,15 @@
         $_SESSION['alamat'] = $alamat;
         $_SESSION['username'] = $usr;
         mysqli_close($conn);
-        echo "<script type='text/javascript'>window.location = 'merchant_dashboard.php'</script>";
+        if($role == "seller")
+        {
+            echo "<script type='text/javascript'>window.location = 'merchant_dashboard.php'</script>";
+        }
+        else if($role == "buyer")
+        {
+            echo "<script type='text/javascript'>window.location = 'customer_dashboard.php'</script>";
+        }
+
     }
     else{
         echo "Error : " . $sql . "<br>" . mysqli_error($conn);

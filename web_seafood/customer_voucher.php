@@ -42,7 +42,7 @@
                 </a>
             </div>
             <div class="col-1 pt-3 pr-3 pb-1 pl-3">
-                <a href=".php" >
+                <a href="customer_transactions.php" >
                     <img class="w-100 vis" src="icon/transaction.png" alt="icon member" id="img3"
                     onmouseover="visible(3)" onmouseout="invisible(3)">
                     <h6 class="text-center text-white" id="txt3" style="display:none">Transaction</h6>
@@ -57,6 +57,8 @@
             <div class="col-4"></div>
         </div>
     </div>
+
+    <div class="pt-3 pb-3" style="background-image:url('icon/wpp22.jpg');background-size:100%">
 
     <!-- ISI -->
     <div class="container-fluid">
@@ -79,6 +81,7 @@
             </div>
             <div class="col-4"></div>
         </div>
+    </div>
     </div>
 
     <!-- Footer -->

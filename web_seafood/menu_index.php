@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Merchant Menu</title>
+    <title>Menu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
-    
+<body style="background-image:url('icon/wpp2.png')">
+
     <?php
         session_start();
 
@@ -30,30 +30,30 @@
         <div class="row">
             <div class="col-4"></div>
             <div class="col-1 pt-3 pr-3 pb-1 pl-3">
-                <a href="customer_dashboard.php">
-                    <img class="w-100 vis" src="icon/id-card.png" alt="icon home" id="img1" 
+                <a href="index.php">
+                    <img class="w-100 vis" src="icon/house.png" alt="icon home" id="img1" 
                     onmouseover="visible(1)" onmouseout="invisible(1)">
-                    <h6 class="text-center text-white" id="txt1" style="display:none">Profile</h6>
+                    <h6 class="text-center text-white" id="txt1" style="display:none">Home</h6>
                 </a>
             </div>
             <div class="col-1 pt-3 pr-3 pb-1 pl-3">
-                <a href="customer_menu.php">
+                <a href="menu_index.php">
                     <img class="w-100" src="icon/menu.png" alt="icon menu" id="img2">
-                    <h6 class="text-center text-white" id="txt2">Catalogue</h6>
+                    <h6 class="text-center text-white" id="txt2">Menu</h6>
                 </a>
             </div>
             <div class="col-1 pt-3 pr-3 pb-1 pl-3">
-                <a href="customer_transactions.php" >
-                    <img class="w-100 vis" src="icon/transaction.png" alt="icon member" id="img3"
+                <a href="loginRegister.php">
+                    <img class="w-100 vis" src="icon/barcode.png" alt="icon member" id="img3"
                     onmouseover="visible(3)" onmouseout="invisible(3)">
-                    <h6 class="text-center text-white" id="txt3" style="display:none">Transaction</h6>
+                    <h6 class="text-center text-white" id="txt3" style="display:none">Member</h6>
                 </a>
             </div>
             <div class="col-1 pt-3 pr-3 pb-1 pl-3">
-                <a href="customer_voucher.php">
-                    <img class="w-100 vis" src="icon/voucher.png" alt="icon about" id="img4" 
+                <a href="">
+                    <img class="w-100 vis" src="icon/information.png" alt="icon about" id="img4" 
                     onmouseover="visible(4)" onmouseout="invisible(4)">
-                    <h6 class="text-center text-white" id="txt4" style="display:none">Voucher</h6>
+                    <h6 class="text-center text-white" id="txt4" style="display:none">About</h6>
                 </a>
             </div>
             <div class="col-4"></div>
@@ -61,9 +61,6 @@
     </div>
 
     <?php
-
-        $id = $_SESSION['id'];
-
         $sqlItemKerang = "SELECT * FROM item_lists WHERE jenis_item = 'kerang'";
         $listItemKerang = $conn->query($sqlItemKerang);
 
@@ -72,61 +69,17 @@
 
         $sqlItemLobster = "SELECT * FROM item_lists WHERE jenis_item = 'lobster'";
         $listItemLobster = $conn->query($sqlItemLobster);
-
-        $sqlCart = "SELECT * FROM carts WHERE id_member = '$id'";
-        $listCart = $conn->query($sqlCart);
     ?>
 
     <div class="pt-3 pb-3" style="background-image:url('icon/wpp22.jpg');background-size:100%">
-
     <!-- ISI -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4 text-center text-white font-italic mt-3 p-3 mb-3"
-            style="background-color:rgb(0,0,0,0.8);border-radius:20px">
-                
-                <h4>Keranjang</h4>
-                <table class="table table-dark" style="border-radius:20px">
-                    <thead>
-                        <th scope="col">ID </th>
-                        <th scope="col">Nama Item</th>
-                        <th scope="col">Aksi</th>
-                    </thead>
-                    <tbody class="text-center">
-                        <?php
-                            if($listCart->num_rows > 0)
-                            {
-                                while($row = $listCart->fetch_assoc())
-                                {
-                                    echo "<tr>";
-                                        echo "<td>" . $row['id_item'] . "</td>";
-                                        echo "<td>" . $row['nama_item'] . "</td>";
-                                        echo "<td><a href='delete_cart.php?id=" . $row['id_item'] . "'>
-                                                <button class='btn btn-danger'>Delete</button></a></td>";
-                                    echo "</tr>";
-                                }
-                            }
-                            else{
-                                echo "<tr>";
-                                    echo "<td colspan=7>DATA ITEM TIDAK ADA</td>";
-                                echo "</tr>";
-                            }
-                        ?>
-                    </tbody>
-                </table>
-                <a href="customer_cart_detail.php">
-                    <button class="btn btn-primary w-50">Detail Transaksi</button>
-                </a>
-            </div>
-            <div class="col-4"></div>
-        </div>
-        <!-- List Item Kerang -->
-        <div class="row">
             <div class="col-2"></div>
-            <div class="col-8 text-center text-white font-italic p-3 mb-3"
+            <div class="col-8 text-center text-white font-italic p-3"
             style="background-color:rgb(0,0,0,0.8);border-radius:20px">
-                <h2>Item List</h2>
+
+                <h2>Daftar Menu</h2>
                 <br>
                 <h4>Kerang</h4>
                 <table class="table table-dark" style="border-radius:20px">
@@ -152,8 +105,8 @@
                                         echo "<td>" . $row['jenis_item'] . "</td>";
                                         echo "<td>" . $row['harga_item'] . "</td>";
                                         echo "<td>" . $row['item_terjual'] . "</td>";
-                                        echo "<td><a href='customer_cart.php?id=" . $row['id_item'] . "'>
-                                                <button class='btn btn-info'>Add To Cart</button></a></td>";
+                                        echo "<td><a href='loginRegister.php'>
+                                                <button class='btn btn-success'>Login to Buy</button></a></td>";
                                     echo "</tr>";
                                 }
                             }
@@ -192,8 +145,8 @@
                                         echo "<td>" . $row['jenis_item'] . "</td>";
                                         echo "<td>" . $row['harga_item'] . "</td>";
                                         echo "<td>" . $row['item_terjual'] . "</td>";
-                                        echo "<td><a href='customer_cart.php?id=" . $row['id_item'] . "'>
-                                                <button class='btn btn-info'>Add To Cart</button></a></td>";
+                                        echo "<td><a href='loginRegister.php'>
+                                                <button class='btn btn-success'>Login to Buy</button></a></td>";
                                     echo "</tr>";
                                 }
                             }
@@ -232,8 +185,8 @@
                                         echo "<td>" . $row['jenis_item'] . "</td>";
                                         echo "<td>" . $row['harga_item'] . "</td>";
                                         echo "<td>" . $row['item_terjual'] . "</td>";
-                                        echo "<td><a href='customer_cart.php?id=" . $row['id_item'] . "'>
-                                                <button class='btn btn-info'>Add To Cart</button></a></td>";
+                                        echo "<td><a href='loginRegister.php'>
+                                                <button class='btn btn-success'>Login to Buy</button></a></td>";
                                     echo "</tr>";
                                 }
                             }
@@ -267,18 +220,6 @@
     opacity:0.5;
 }
 
-.bgForm{
-    background-color:rgb(0,0,0,0.8);
-}
-
-.inpfrm{
-    background-color:rgb(0,0,0,0.5);
-    border:none;
-    color:white;
-    text-align:center;
-    border-radius:20px;
-}
-
 </style>
 
 <script>
@@ -291,14 +232,6 @@
     function invisible(x){
         document.getElementById("img"+ x).style.opacity = "0.5";
         document.getElementById("txt"+ x).style.display = "none";
-    }
-
-    function showform(x){
-        document.getElementById(x).style.display = "block";
-    }
-
-    function hideform(x){
-        document.getElementById(x).style.display = "none";
     }
 
 </script>

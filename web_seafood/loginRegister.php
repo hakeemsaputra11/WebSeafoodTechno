@@ -31,7 +31,7 @@
                 </a>
             </div>
             <div class="col-1 pt-3 pr-3 pb-1 pl-3">
-                <a href="">
+                <a href="menu_index.php">
                     <img class="w-100 vis" src="icon/menu.png" alt="icon menu" id="img2" 
                     onmouseover="visible(2)" onmouseout="invisible(2)">
                     <h6 class="text-center text-white" id="txt2" style="display:none">Menu</h6>
@@ -54,8 +54,10 @@
         </div>
     </div>
 
+    <div class="pt-3 pb-3" style="background-image:url('icon/wpp22.jpg');background-size:100%">
+
     <!-- Form -->
-    <div class="container mt-3 mb-3">
+    <div class="container mb-3">
         <div class="row">
             <div class="col-2"></div>
             <div class="col-4 text-center text-white p-3 font-italic bgForm"
@@ -86,21 +88,21 @@
                 <form action="register_member.php" method="post">
 
                     <h6>Nama</h6>
-                    <input type="text" name="nama" class="w-75 text-center text-white" 
+                    <input type="text" id="nama" name="nama" class="w-75 text-center text-white" 
                     placeholder="Masukkan Nama" style="background-color:rgb(0,0,0,0.5);border:none;
-                    border-radius:20px" required>
+                    border-radius:20px" maxlength="50" onkeyup="cek()" required>
                     <br>
                     <br>
                     <h6>No. Telepon</h6>
-                    <input type="text" name="notlp" class="w-75 text-center text-white" 
+                    <input type="text" id="notlp" name="notlp" class="w-75 text-center text-white" 
                     placeholder="Masukkan Nomor Telepon" style="background-color:rgb(0,0,0,0.5);border:none;
-                    border-radius:20px" required>
+                    border-radius:20px" maxlength="13" onkeyup="cek()" required>
                     <br>
                     <br>
                     <h6>Alamat</h6>
                     <input type="text" name="alamat" class="w-75 text-center text-white" 
                     placeholder="Masukkan Alamat" style="background-color:rgb(0,0,0,0.5);border:none;
-                    border-radius:20px" required>
+                    border-radius:20px" maxlength="50" required>
                     <br>
                     <br>
                     <h6>Role</h6>
@@ -112,15 +114,15 @@
                     <br>
                     <br>
                     <h6>Username</h6>
-                    <input type="text" name="username" class="w-75 text-center text-white" 
+                    <input type="text" id="usrnm" name="username" class="w-75 text-center text-white" 
                     placeholder="Masukkan Username" style="background-color:rgb(0,0,0,0.5);border:none;
-                    border-radius:20px" required>
+                    border-radius:20px" maxlength="50" onkeyup="cek()" required>
                     <br>
                     <br>
                     <h6>Password</h6>
-                    <input type="Password" name="password" class="w-75 text-center text-white" 
+                    <input type="Password" id="pass" name="password" class="w-75 text-center text-white" 
                     placeholder="Masukkan Password" style="background-color:rgb(0,0,0,0.5);border:none;
-                    border-radius:20px" required>
+                    border-radius:20px" maxlength="50" onkeyup="cek()" required>
                     <br>
                     <br>
                     <input type="submit" value="Register" class="btn btn-success">
@@ -129,6 +131,7 @@
             </div>
             <div class="col-2"></div>
         </div>
+    </div>
     </div>
 
     <!-- Footer -->
@@ -165,4 +168,35 @@
         document.getElementById("txt"+ x).style.display = "none";
     }
 
+    function cek()
+    {
+        let nama = document.getElementById("nama").value;
+        let notelp = document.getElementById("notlp").value;
+        let usrnm = document.getElementById("usrnm").value;
+        let pass = document.getElementById("pass").value;
+        
+        if(nama.match(/[$-/:-?{-~!"^_`\[\]]/) || nama.match(/[0-9]/))
+        {
+            alert("Nama hanya boleh huruf!");
+            document.getElementById("nama").value = "";
+        }
+        
+        if(notelp.match(/[$-/:-?{-~!"^_`\[\]]/) || notelp.match(/[a-zA-Z]/) || notelp.match(/\s/))
+        {
+            alert("Telepon hanya boleh angka!");
+            document.getElementById("notlp").value = "";
+        }
+
+        if(usrnm.match(/\s/))
+        {
+            alert("Username tidak boleh ada spasi!");
+            document.getElementById("usrnm").value = "";
+        }
+
+        if(pass.match(/\s/))
+        {
+            alert("Password tidak boleh ada spasi!");
+            document.getElementById("pass").value = "";
+        }
+    }
 </script>

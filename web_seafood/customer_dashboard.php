@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-image:url('icon/wpp2.png')">
 
     <?php
         session_start();
@@ -41,7 +41,7 @@
                 </a>
             </div>
             <div class="col-1 pt-3 pr-3 pb-1 pl-3">
-                <a href=".php" >
+                <a href="customer_transactions.php" >
                     <img class="w-100 vis" src="icon/transaction.png" alt="icon member" id="img3"
                     onmouseover="visible(3)" onmouseout="invisible(3)">
                     <h6 class="text-center text-white" id="txt3" style="display:none">Transaction</h6>
@@ -58,13 +58,18 @@
         </div>
     </div>
 
+    <div class="pt-3 pb-3" style="background-image:url('icon/wpp22.jpg');background-size:100%">
+
     <!-- ISI -->
     <div class="container-fluid">
         <!-- Welcoming Member -->
         <div class="row">
             <div class="col-4"></div>
-            <div class="col-4 text-center font-italic mt-3 mb-3">
-                <h1>Welcome, <?php echo $_SESSION['nama'] ?></h1>
+            <div class="col-4 text-white text-center font-italic mb-3 p-1"
+            style="background-color:rgb(0,0,0,0.8);border-radius:20px">
+                <h1>
+                    Welcome, <?php echo $_SESSION['nama'] ?>
+                </h1>
             </div>
             <div class="col-4"></div>
         </div>
@@ -100,27 +105,28 @@
                 <br>
                 <form action="edit_member.php" method="post">
                     <h5>Nama</h5>
-                    <input class="inpfrm w-75" type="text" name="nama" placeholder="Masukkan Nama" 
-                    value=<?php echo $_SESSION['nama'] ?>>
+                    <input class="inpfrm w-75" id="nama" type="text" name="nama" placeholder="Masukkan Nama" 
+                    value=<?php echo $_SESSION['nama'] ?> onkeyup="cek()" required>
                     <br>
                     <br>
                     <h5>No. Telp</h5>
-                    <input class="inpfrm w-75" type="text" name="notlp" splaceholder="Masukkan Nomor Telepon" 
-                    value=<?php echo $_SESSION['notlp'] ?>>
+                    <input class="inpfrm w-75" id="notlp" type="text" name="notlp" splaceholder="Masukkan Nomor Telepon" 
+                    value=<?php echo $_SESSION['notlp'] ?> onkeyup="cek()" required>
                     <br>
                     <br>
                     <h5>Alamat</h5>
-                    <input class="inpfrm w-75" type="text" name="alamat" placeholder="Masukkan Alamat" 
-                    value=<?php echo $_SESSION['alamat'] ?>>
+                    <input class="inpfrm w-75" id="alamat" type="text" name="alamat" placeholder="Masukkan Alamat" 
+                    value=<?php echo $_SESSION['alamat'] ?> required>
                     <br>
                     <br>
                     <h5>Username</h5>
-                    <input class="inpfrm w-75" type="text" name="username" placeholder="Masukkan Username"
-                    value=<?php echo $_SESSION['username'] ?>>
+                    <input class="inpfrm w-75" id="usrnm" type="text" name="username" placeholder="Masukkan Username"
+                    value=<?php echo $_SESSION['username'] ?> onkeyup="cek()" required>
                     <br>
                     <br>
                     <h5>Password</h5>
-                    <input class="inpfrm w-75" type="password" name="password" placeholder="Masukkan Password">
+                    <input class="inpfrm w-75" id="pass" type="password" name="password" placeholder="Masukkan Password"
+                    onkeyup="cek()" required>
                     <br>
                     <br>
                     <input class="btn btn-success w-75" type="submit" value="Submit">
@@ -133,7 +139,7 @@
         <!-- Button Logout -->
         <div class="row">
             <div class="col-4"></div>
-            <div class="col-4 text-center mb-3 p-3"
+            <div class="col-4 text-center p-3"
             style="background-color:rgb(0,0,0,0.8);border-radius:20px">
                 <a href="logout.php">
                     <button class="btn btn-danger w-75">Logout</button>
@@ -141,6 +147,7 @@
             </div>
             <div class="col-4"></div>
         </div>
+    </div>
     </div>
 
     <!-- Footer -->
@@ -192,4 +199,35 @@
         document.getElementById("form").style.display = "none";
     }
 
+    function cek()
+    {
+        let nama = document.getElementById("nama").value;
+        let notelp = document.getElementById("notlp").value;
+        let usrnm = document.getElementById("usrnm").value;
+        let pass = document.getElementById("pass").value;
+        
+        if(nama.match(/[$-/:-?{-~!"^_`\[\]]/) || nama.match(/[0-9]/))
+        {
+            alert("Nama hanya boleh huruf!");
+            document.getElementById("nama").value = "";
+        }
+        
+        if(notelp.match(/[$-/:-?{-~!"^_`\[\]]/) || notelp.match(/[a-zA-Z]/) || notelp.match(/\s/))
+        {
+            alert("Telepon hanya boleh angka!");
+            document.getElementById("notlp").value = "";
+        }
+
+        if(usrnm.match(/\s/))
+        {
+            alert("Username tidak boleh ada spasi!");
+            document.getElementById("usrnm").value = "";
+        }
+
+        if(pass.match(/\s/))
+        {
+            alert("Password tidak boleh ada spasi!");
+            document.getElementById("pass").value = "";
+        }
+    }
 </script>
